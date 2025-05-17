@@ -1,0 +1,13 @@
+a{
+    text-decoration: none;
+}
+span{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap:1rem;
+}
+.footer-para{
+    font-size: 12px;
+    opacity: .6;
+}
