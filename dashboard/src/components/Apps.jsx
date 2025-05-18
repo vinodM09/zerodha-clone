@@ -1,7 +1,9 @@
-import React from "react";
-
 const Apps = () => {
-  return <h1>Apps</h1>;
+    return (
+        <>
+            <p>Checkout the other services we offer!</p>
+        </>
+    )
 };
 
 export default Apps;
