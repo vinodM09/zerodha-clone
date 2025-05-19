@@ -13,17 +13,10 @@ import {
   MoreHoriz,
 } from "@mui/icons-material";
 
-// import { watchlist } from "../data/data";
-// import { DoughnutChart } from "./DoughnoutChart";
+import { watchlist } from "../../public/dataD";
+import { DoughnutChart } from "./DoughnoutChart";
 
-// const labels = watchlist.map((subArray) => subArray["name"]);
-
-// Test cases below
-const stockNames = ['Hello', 'This', 'Is', 'Just', 'For', 'Test', 'Work'];
-const stockPrices = ['1', '1', '1', '1', '1', '1', '1'];
-const labels = stockNames.map((subArray) => subArray[0]);
-const price = stockPrices.map((subArray) => subArray[0]);
-
+const labels = watchlist.map((subArray) => subArray["name"]);
 
 const WatchList = () => {
   const data = {
@@ -31,7 +24,7 @@ const WatchList = () => {
     datasets: [
       {
         label: "Price",
-        data: stockPrices.map((price) => price[0]),
+        data: watchlist.map((stock) => stock.price),
         backgroundColor: [
           "rgba(255, 99, 132, 0.5)",
           "rgba(54, 162, 235, 0.5)",
@@ -90,19 +83,21 @@ const WatchList = () => {
           placeholder="Search eg:infy, bse, nifty fut weekly, gold mcx"
           className="search"
         />
-        <span className="counts"> {labels.length} / 50</span>
+        <span className="counts"> {watchlist.length} / 50</span>
       </div>
 
       <ul className="list">
-        {labels.map((stock, index) => {
+        {watchlist.map((stock, index) => {
           return <WatchListItem stock={stock} key={index} />;
         })}
       </ul>
 
-      {/* <DoughnutChart data={data} /> */}
+      <DoughnutChart data={data} />
     </div>
   );
 };
+
+export default WatchList;
 
 const WatchListItem = ({ stock }) => {
   const [showWatchlistActions, setShowWatchlistActions] = useState(false);
@@ -118,7 +113,7 @@ const WatchListItem = ({ stock }) => {
   return (
     <li onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
       <div className="item">
-        <p className={stock.isDown ? "down" : "up"}>{labels}</p>
+        <p className={stock.isDown ? "down" : "up"}>{stock.name}</p>
         <div className="itemInfo">
           <span className="percent">{stock.percent}</span>
           {stock.isDown ? (
@@ -126,7 +121,7 @@ const WatchListItem = ({ stock }) => {
           ) : (
             <KeyboardArrowUp className="down" />
           )}
-          <span className="price">{price}</span>
+          <span className="price">{stock.price}</span>
         </div>
       </div>
       {showWatchlistActions && <WatchListActions uid={stock.name} />}
@@ -180,14 +175,3 @@ const WatchListActions = ({ uid }) => {
     </span>
   );
 };
-
-// test output
-// const WatchList = () => {
-//   return (
-//     <>
-//     <p>WatchList</p>
-//     </>
-//   )
-// };
-
-export default WatchList;
