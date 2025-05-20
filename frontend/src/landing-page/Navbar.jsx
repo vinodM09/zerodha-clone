@@ -1,12 +1,15 @@
 import { Link } from "react-router-dom";
+import './Navbar.css';
 export default function Navbar() {
     return (
         <nav className="navbar navbar-expand-lg bg-body-tertiary border-bottom">
-            <div className="container">
+            <div className="container ml-5">
+
                 {/* Logo and Toggler */}
                 <Link className="navbar-brand" to="/">
                     <img src="media/images/logo.svg" alt="logo" style={{ width: "25%" }} />
                 </Link>
+                
                 <button
                     className="navbar-toggler"
                     type="button"
